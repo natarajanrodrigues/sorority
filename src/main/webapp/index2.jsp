@@ -166,7 +166,17 @@
 //                            return {icon: iconBase + 'schools_maps.png'};
 //                        });
 
-
+                        iconMarker = {
+                            ASSEDIO : {
+                                icon: 'icons/letter_a.png'
+                            },
+                            VIOLÊNCIA : {
+                                icon: 'icons/letter_v.png'
+                            },
+                            ESTUPRO : {
+                                icon: 'icons/letter_e.png'
+                            }
+                        }
 
                         jQuery.ajax({
                             url: 'DenunciaGetAll',
@@ -179,10 +189,13 @@
                                     //create gmap latlng obj
                                     tmpLatLng = new google.maps.LatLng(places[p].geometry.coordinates[0], places[p].geometry.coordinates[1]);
                                     // make and place map maker.
+//                                    alert(iconMarker[places[p].properties.tipo].icon);
                                     var marker = new google.maps.Marker({
                                         map: map,
                                         position: tmpLatLng,
-                                        title: places[p].name + "<br>" + places[p].geo_name
+                                        title: places[p].name + "<br>" + places[p].geo_name,
+                                        
+                                        icon : iconMarker[places[p].properties.tipo].icon
                                     });
 //                                    bindInfoWindow(marker, map, infowindow, '<b>' + places[p].name + "</b><br>" + places[p].geo_name);
                                     // not currently used but good to keep track of markers
