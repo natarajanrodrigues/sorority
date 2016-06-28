@@ -119,7 +119,7 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="dist/js/jquery-2.1.4.min.js"></script>
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+        
         <script src="dist/js/bootstrap.min.js"></script>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=places,geometry&callback=initMap"
@@ -170,7 +170,7 @@
                             ASSEDIO : {
                                 icon: 'icons/letter_a.png'
                             },
-                            VIOLÊNCIA : {
+                            VIOLENCIA : {
                                 icon: 'icons/letter_v.png'
                             },
                             ESTUPRO : {
