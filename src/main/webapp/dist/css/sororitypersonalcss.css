@@ -11,10 +11,13 @@ and open the template in the editor.
 #map {
     height: 80%;
     min-height: 500px;
+    margin-top: 70px; 
+    margin-bottom: 10px;
 }
 
 .navbar{
     z-index: 10 !important;
+    margin-bottom: 10px; 
 }
 
 
@@ -74,4 +77,9 @@ and open the template in the editor.
     right: 40%;
     text-align: center;
     /*margin: auto;*/
+}
+
+
+.groupButtonIndex {
+    
 }

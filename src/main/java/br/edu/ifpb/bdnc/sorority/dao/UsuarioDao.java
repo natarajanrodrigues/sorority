@@ -263,7 +263,7 @@ public class UsuarioDao {
     private Usuario montarUsuario(ResultSet rs) throws SQLException {
         Usuario user = new Usuario();
         user.setId(rs.getInt("id"));
-        user.setNome(rs.getString("nomeCompleto"));
+        user.setNome(rs.getString("nome"));
         user.setAdmin(rs.getBoolean("eh_admin"));
         user.setEmail(rs.getString("email"));
         user.setSenha(rs.getString("senha"));
