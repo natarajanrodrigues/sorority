@@ -5,7 +5,7 @@
  */
 
 
-var map;
+var map, heatmap, localLayer;
 
 var markers = [];
 
@@ -56,7 +56,7 @@ function initMap() {
         }
     };
 
-    var localLayer = new google.maps.Data();
+    localLayer = new google.maps.Data();
     localLayer.loadGeoJson('DenunciaGetAll');
 
     localLayer.setStyle(function (feature) {
@@ -67,23 +67,59 @@ function initMap() {
     localLayer.setMap(map);
 
     $('#check_assedio').change(function () {
-
-//        localLayer.remove(function(feature){
-//            return {this: feature.getProperty('tipo') === 'ASSEDIO'};
-//        });
-
-        if ($(this).prop('checked', false)) {
+        if ($(this).prop('checked') === false) {
             localLayer.forEach(function (feature) {
                 if (feature.getProperty('tipo') === 'ASSEDIO') {
-//                    localLayer.remove(feature);
-                    localLayer.setPropert
-                    });
+                    localLayer.overrideStyle(feature, {'visible': false});
+                }
+            });
+        } else {
+            localLayer.forEach(function (feature) {
+                if (feature.getProperty('tipo') === 'ASSEDIO') {
+                    localLayer.overrideStyle(feature, {'visible': true});
                 }
             });
         }
-
-
     });
+
+    $('#check_estupro').change(function () {
+        if ($(this).prop('checked') === false) {
+            localLayer.forEach(function (feature) {
+                if (feature.getProperty('tipo') === 'ESTUPRO') {
+                    localLayer.overrideStyle(feature, {'visible': false});
+                }
+            });
+        } else {
+            localLayer.forEach(function (feature) {
+                if (feature.getProperty('tipo') === 'ESTUPRO') {
+                    localLayer.overrideStyle(feature, {'visible': true});
+                }
+            });
+        }
+    });
+
+    $('#check_violencia').change(function () {
+        if ($(this).prop('checked') === false) {
+            localLayer.forEach(function (feature) {
+                if (feature.getProperty('tipo') === 'VIOLENCIA') {
+                    localLayer.overrideStyle(feature, {'visible': false});
+                }
+            });
+        } else {
+            localLayer.forEach(function (feature) {
+                if (feature.getProperty('tipo') === 'VIOLENCIA') {
+                    localLayer.overrideStyle(feature, {'visible': true});
+                }
+            });
+        }
+    });
+
+//    heatmap = new google.maps.visualization.HeatmapLayer({
+//        data: localLayer,
+//        map: map
+//    });
+
+
 
 
 
@@ -177,6 +213,10 @@ function initMap() {
     });
 }
 
+function toggleHeatmap() {
+    heatmap.setMap(heatmap.getMap() ? null : map);
+}
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -246,3 +286,45 @@ function closeThisMarker() {
     infoWindow.marker.setMap(null);
 }
 
+function heat() {
+    $('#check_todos').trigger('click');
+
+    if ($('#check_todos').prop('checked') === true) {
+        if (heatmap !== undefined) {
+            heatmap.setMap(null);
+        }
+    } else {
+        var places;
+        var heatmapData = [];
+
+        jQuery.ajax({
+            url: 'DenunciaGetAll',
+            dataType: 'json',
+            success: function (response) {
+
+                places = response.features;
+                // loop through places and add markers
+                for (p in places) {
+
+                    tmpLatLng = new google.maps.LatLng(places[p].geometry.coordinates[1], places[p].geometry.coordinates[0]);
+
+                    heatmapData.push(tmpLatLng);
+                }
+
+            }
+        });
+
+        if (heatmap !== undefined) {
+            heatmap.setMap(map);
+        } else {
+            heatmap = new google.maps.visualization.HeatmapLayer({
+                data: heatmapData,
+                map: map
+            });
+        }
+
+
+
+
+    }
+}

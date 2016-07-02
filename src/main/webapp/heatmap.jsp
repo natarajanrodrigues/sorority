@@ -131,14 +131,9 @@
                 <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
                     <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
                 </button>
-                <!--                <button type="button" onclick="toggleHeatmap()" class="btn btn-default" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> On/Off Heatmap
-                                </button>-->
-                <button type="button" onclick="heat()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-apple" aria-hidden="true"></span> Heat
+                <button type="button" onclick="toggleHeatmap()" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> On/Off Heatmap
                 </button>
-                
-                <a href="heatmap.jsp" class="btn btn-default" data-dismiss="modal">Cancelar</a>
             </div>            
         </div>
         <br><br><br>
@@ -188,13 +183,12 @@
 
         <script src="dist/js/login.js"></script>
         <script src="dist/js/checkbuttons.js"></script>
-        <!--        <script type="text/javascript"
-                src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>-->
+        
 
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=visualization,places,geometry&callback=initMap"
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=geometry,visualization&callback=initMap"
         async defer></script>
-
-        <script src="dist/js/mapsFunctions.js"></script>
+        
+        <script src="dist/js/heatMapsFunctions.js"></script>
 
     </body> 
 </html>

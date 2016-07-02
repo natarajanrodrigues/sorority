@@ -5,7 +5,7 @@
  */
 
 $('#check_todos').click(function () {
-    $('.check_marker').not(this).prop('checked', this.checked);
+    $('.check_marker').not(this).trigger('click');
 });
 
 $('.check_marker').change(function () {
