@@ -115,7 +115,7 @@
 
                     <div class="modal-footer">
                         <!--<input type="submit" form="formDenuncia" class="btn btn-primary" value="Salvar">-->
-                        <a id="btnDenunciar" type="submit" class="btn btn-primary">Denunciar</a>
+                        <input id="btnDenunciar" type="submit" class="btn btn-primary" value="Denunciar"/>
                         <!--                            <a id="bntCancela" href="administrativo.jsp" class="btn btn-default ">Cancelar</a>-->
                         <a href="" class="btn btn-default" data-dismiss="modal">Cancelar</a>
                         <!--<a id="btnEntrar" type="submit" class="btn btn-primary">Entrar</a>-->
@@ -133,7 +133,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="" class="navbar-brand">Sorority</a>
+                        <img src="imagens/logo_sorority small.WebP" class="navbar-brand" style="padding: 10px">
                     </div>
 
                     <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
@@ -164,8 +164,8 @@
 
             </div>
         </div>
-        <div class="container" >
-            <div class="container-fluid" style="margin: 0 0 10px 0" role="group">
+         <div class="container" >
+            <div class="container-fluid col-md-4" style="margin: 0 0 10px 0" role="group">
                 <h4>Marcadores</h4>
                 <div class="checkbox-inline">
                     <label>
@@ -188,6 +188,27 @@
                     </label>
                 </div>
             </div>            
+            <div class="container-fluid col-md-8" style="margin: 0 0 10px 0" role="group">
+
+                <h4>Filtrar por Data</h4>
+                <div class="form-inline col-md-10">
+                    <label for="Local" class="control-label">Início</label>
+                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                        <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                    <label for="Local" class="control-label">Fim</label>
+                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                        <input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="dd/mm/aaaa">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+
+                </div>
+                <button onclick="buscarPorData()" type="button" class="btn btn-default" aria-label="Buscar por data">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                </button>
+
+            </div>
         </div>
 
         <div class="container">
@@ -217,7 +238,7 @@
                             <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Heatmap
                         </button>
                     </div>
-                    
+
                     <div class="btn-group" role="group">
                         <button type="button" onclick="teste()" class="btn btn-default" aria-label="Left Align">
                             <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Teste
@@ -241,24 +262,28 @@
         <script src="dist/js/bootstrap.min.js"></script>
 
         <script src="dist/js/login.js"></script>
+        <script type="text/javascript" src="dist/js/date.format.js"></script>
         <script src="dist/js/checkbuttons.js"></script>
 
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=visualization,places,geometry&callback=initMap"
         async defer></script>
 
-        <script src="dist/js/mapsFunctions.js"></script>
+        <script src="dist/js/mapsFunctions.js"></script>    
+        
         
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.min.js"></script>
-        <script type="text/javascript" src="dist/js/date.format.js"></script>
+
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
+        
         <script>
-            $(document).ready(function () {
-                $('#datepicker1').datepicker({
-                    pickTime: false,
-                    format: 'dd/mm/yyyy',
-                    language: "pt-BR"
-                });
-            });
+                            $(document).ready(function () {
+                                $('#datepicker1').datepicker({
+                                    pickTime: false,
+                                    format: 'dd/mm/yyyy',
+                                    language: "pt-BR"
+                                });
+                                
+                            });
         </script>
 
 

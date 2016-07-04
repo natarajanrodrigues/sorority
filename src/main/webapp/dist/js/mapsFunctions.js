@@ -18,7 +18,7 @@ function initMap() {
     });
 
     var infoWindow = new google.maps.InfoWindow({map: map});
-    
+
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -185,17 +185,15 @@ function initMap() {
 
 
 function loadLocations() {
+
+    infowindow2 = new google.maps.InfoWindow({map: null, zindex: 100});
+
+
     //mapping icons 
     iconMarker = {
-        ASSÉDIO: {
-            icon: 'icons/letter_a.png'
-        },
-        VIOLÊNCIA: {
-            icon: 'icons/letter_v.png'
-        },
-        ESTUPRO: {
-            icon: 'icons/letter_e.png'
-        }
+        ASSÉDIO:    { icon: 'icons/letter_a.png' },
+        VIOLÊNCIA:  { icon: 'icons/letter_v.png' },
+        ESTUPRO:    { icon: 'icons/letter_e.png' }
     };
 
     //loading geolocations
@@ -214,47 +212,58 @@ function loadLocations() {
         };
     });
 
+
     //showing icons on map
     localLayer.setMap(map);
 
-    infowindow2 = new google.maps.InfoWindow({map: map});
+//    infowindow2 = new google.maps.InfoWindow({map: map});
+
     localLayer.addListener('click', function (event) {
         var myHTML = event.feature.getProperty("id");
-        
+
         var id = event.feature.getProperty("id");
         var tipo = event.feature.getProperty("tipo");
         var tipo_denunciador = event.feature.getProperty("tipo_denunciador");
         var eh_anonima = event.feature.getProperty('eh_anonima');
         var informacao = event.feature.getProperty('informacao');
         var data = event.feature.getProperty('data_denuncia');
-        var dataFormatada = dateFormat(data, "dd/mm/yyyy");
         
         
+        
+        var dataFeature = new Date(Date.parse(data));
+        dataFeature.setDate(dataFeature.getDate() + 1);
+        
+        
+        var dataFormatada = dateFormat(dataFeature, "dd/mm/yyyy");
+
+
         var dados = {"length": 6, "id: ": id, "Tipo de Ocorrência: ": tipo, "Tipo de denunciador: ": tipo_denunciador, "Denúncia Anônima": (true ? 'sim' : 'nao'), "Data: ": data, "Informação: ": informacao};
         var dados2 = {"id: ": id, "Tipo de Ocorrência: ": tipo, "Tipo de denunciador: ": tipo_denunciador, "Denúncia Anônima: ": (true ? 'sim' : 'nao'), "Data: ": dataFormatada, "Informação: ": informacao};
         var dadosArray = $.makeArray(dados);
-        
-        
-        
-        var text = "<div class='col-md-8'>";
-        
-        $.map(dados2, function(val, i) {
+
+
+
+        var text = "<div style='max-width:300px'>";
+
+        $.map(dados2, function (val, i) {
             text += "<p><strong>" + i + "</strong>" + val + "</p>";
         });
-        
+
         text += "</div>";
-        
+
 //        infowindow2.setContent("<div style='width:150px;'>" + myHTML + "</div>");
         infowindow2.setContent(text);
         // position the infowindow on the marker
         infowindow2.setPosition(event.feature.getGeometry().get());
         // anchor the infowindow on the marker
         infowindow2.setOptions({pixelOffset: new google.maps.Size(0, -30)});
+//        infoWindow.close(map);
         infowindow2.open(map);
     });
-    
+
     map.addListener('click', function (event) {
         infowindow2.close(map);
+//        infoWindow.close(map);
     });
 
 }
@@ -347,8 +356,6 @@ function removeAllMarkers() {
     }
 }
 
-
-
 function closeThisMarker() {
     infoWindow.marker.setMap(null);
 }
@@ -390,7 +397,7 @@ function toogleHeatmap() {
                     heatmap.setMap(map);
                 }
             });
-            
+
 
         } else {
             heatmap.setMap(map);
@@ -433,7 +440,7 @@ function processaDenuncia() {
 //                $("#" + key).parent("div").addClass("has-error");
 //
 //            });
-            alert('Erro ao cadastrar Denuncia');
+            alert('Ocorreu um erro ao cadastrar Denuncia');
 
         }
     });
@@ -468,5 +475,55 @@ function teste() {
         Ï
 
     });
+
+}
+
+$('#modal-denuncia').on('hidden.bs.modal', function () {
+    $(this).find('form')[0].reset();
+});
+
+function parseDate(input) {
+    var parts = input.match(/(\d+)/g);
+    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+    return new Date(parts[2], parts[1] - 1, parts[0]); // months are 0-based
+}
+
+function buscarPorData() {
+    $('#dataInicio').datepicker({
+        pickTime: false,
+        format: 'dd/mm/yyyy',
+        language: "pt-BR"
+    });
+
+    $('#dataFim').datepicker({
+        pickTime: false,
+        format: 'dd/mm/yyyy',
+        language: "pt-BR"
+    });
+    
+    var dataInicio = $("#dataInicio").datepicker("getDate");
+    var dataFim = $("#dataFim").datepicker("getDate");
+//
+//    alert(dateFormat(dataInicio, "dd/mm/yyyy") + " " + dateFormat(dataFim, "dd/mm/yyyy"));
+    
+    
+//    alert(dataInicio + " " + dataFim);
+//    alert(dataInicio);
+
+    localLayer.forEach(function (feature) {
+        var data = feature.getProperty('data_denuncia');
+
+        var dataFeature = new Date(Date.parse(data));
+        dataFeature.setDate(dataFeature.getDate() + 1);
+        
+
+        if (dataFeature.getDate() >= dataInicio.getDate() && dataFeature.getDate() <= dataFim.getDate()) {
+            
+            localLayer.overrideStyle(feature, {'visible': true});
+        } else {
+            localLayer.overrideStyle(feature, {'visible': false});
+        }
+    });
+
 
 }

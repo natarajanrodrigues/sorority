@@ -31,7 +31,8 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="" class="navbar-brand">Sorority</a>
+                        <!--<a href="" class="navbar-brand">Sorority</a>-->
+                        <img src="/imagens/logo_sorority small.WebP" class="navbar-brand">
                     </div>
 
                     <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">

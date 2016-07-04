@@ -14,6 +14,9 @@
         <meta name="description" content="Sorority index">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+        
+        <!-- Datepicker -->
+        <link rel="stylesheet" href="dist/css/datepicker/bootstrap-datepicker.min.css">
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">        
@@ -63,7 +66,8 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="" class="navbar-brand">Sorority</a>
+                        <!--<a href="" class="navbar-brand">Sorority</a>-->
+                        <img src="imagens/logo_sorority small.WebP" class="navbar-brand" style="padding: 10px">
                     </div>
 
                     <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
@@ -133,7 +137,7 @@
         </div>
 
         <div class="container" >
-            <div class="container-fluid" style="margin: 0 0 10px 0" role="group">
+            <div class="container-fluid col-md-4" style="margin: 0 0 10px 0" role="group">
                 <h4>Marcadores</h4>
                 <div class="checkbox-inline">
                     <label>
@@ -156,6 +160,27 @@
                     </label>
                 </div>
             </div>            
+            <div class="container-fluid col-md-8" style="margin: 0 0 10px 0" role="group">
+
+                <h4>Filtrar por Data</h4>
+                <div class="form-inline col-md-10">
+                    <label for="Local" class="control-label">Início</label>
+                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                        <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                    <label for="Local" class="control-label">Fim</label>
+                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                        <input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="dd/mm/aaaa">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+
+                </div>
+                <button onclick="buscarPorData()" type="button" class="btn btn-default" aria-label="Buscar por data">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                </button>
+
+            </div>
         </div>
 
         <div class="container">
@@ -175,39 +200,6 @@
         </div>
 
         <br><br><br>
-        <div class="container col-md-6 col-md-push-3">
-            <form action="DenunciaAddController" id="formDenuncia" method="post">
-
-                <div class="form-group">
-                    <label for="Local" class="control-label">Local</label>
-                    <input type="text" id="local" name="local" class="form-control">
-                </div>
-
-                <div class="form-group ">
-                    <label for="isbn" class="control-label">Tipo</label>
-                    <select class="form-control" id="tipo" name="tipo" required> 
-                        <option value="ASSEDIO">Assédio</option> 
-                        <option value="VIOLENCIA">Violência</option> 
-                        <option value="ESTUPRO">Estupro</option> 
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="informacao" class="control-label">Informações adicionais</label>
-                    <textarea id="informacao" name="informacao" class="form-control" rows="5"></textarea>
-                </div>
-
-
-            </form>
-            <div>
-                <input type="submit" form="formDenuncia" class="btn btn-primary" value="Salvar">
-                <a id="bntCancela" href="administrativo.jsp" class="btn btn-default ">Cancelar</a>
-            </div>
-
-            <br><br><br>
-        </div>
-
-        <br><br><br>
 
         <!--FOOTER-->
         <footer>
@@ -220,6 +212,7 @@
         <script src="dist/js/bootstrap.min.js"></script>
 
         <script src="dist/js/login.js"></script>
+        <script type="text/javascript" src="dist/js/date.format.js"></script>
         <script src="dist/js/checkbuttons.js"></script>
         <!--        <script type="text/javascript"
                 src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>-->
@@ -228,7 +221,19 @@
         async defer></script>
 
         <script src="dist/js/mapsFunctions.js"></script>
-        
+        <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.min.js"></script>
+
+        <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#datepicker1').datepicker({
+                    pickTime: false,
+                    format: 'dd/mm/yyyy',
+                    language: "pt-BR"
+                });
+            });
+        </script>
+
 
     </body> 
 </html>
