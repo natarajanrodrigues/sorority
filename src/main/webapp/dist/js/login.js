@@ -26,7 +26,7 @@ $('#btnEntrar').click(function ()
         data: {"email": email, "password": pwd},
         success: function (response) {
             if (response === "TRUE") {
-                $(location).attr('href', 'home.jsp');
+                $(location).attr('href', 'home');
             } else {
                 $('#alertaErroLogin').show(250);
             }
