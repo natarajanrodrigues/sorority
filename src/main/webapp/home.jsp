@@ -15,6 +15,9 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="dist/css/bootstrap.min.css">
 
+        <!-- Datepicker -->
+        <link rel="stylesheet" href="dist/css/datepicker/bootstrap-datepicker.min.css">
+
         <!-- Optional theme -->
         <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">        
         <link rel="stylesheet" href="dist/css/sororitypersonalcss.css">
@@ -49,6 +52,73 @@
                     <div class="modal-footer">
                         <a href="" class="btn btn-default" data-dismiss="modal">Cancelar</a>
                         <a id="btnEntrar" type="submit" class="btn btn-primary">Entrar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Cadastrar Denúncia-->
+        <div class="modal fade" id="modal-denuncia">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title modal-title-center form-singin-heading">Denunciar Ocorrência</h3>
+                    </div>
+                    <div class="modal-body" id="corpoModalLogin">
+                        <form action="DenunciaAddController" id="formDenuncia" method="post">
+
+                            <div class="form-group">
+                                <label for="Local" class="control-label">Local</label>
+                                <input type="text" id="local" name="local" class="form-control">
+                                <!--<input type="hidden" id="local" name="local" class="form-control">-->
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Local" class="control-label">Data</label>
+                                <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="data" name="data" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="isbn" class="control-label">Ocorrência</label>
+                                <select class="form-control" id="tipo" name="tipo" required> 
+                                    <option value="ASSÉDIO">Assédio</option> 
+                                    <option value="VIOLÊNCIA">Violência</option> 
+                                    <option value="ESTUPRO">Estupro</option> 
+                                </select>
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="isbn" class="control-label">Tipo de Denunciador</label>
+                                <select class="form-control" id="denunciador" name="denunciador" required> 
+                                    <option value="TESTEMUNHA">Testemunha</option> 
+                                    <option value="VITIMA">Vítima</option> 
+                                </select>
+                            </div>
+
+                            <div class="form-group ">
+
+                                <label>
+                                    <input type="checkbox" name="anonima" checked> Denúncia anônima
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="informacao" class="control-label">Informações adicionais</label>
+                                <textarea id="informacao" name="informacao" class="form-control" rows="5"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <!--<input type="submit" form="formDenuncia" class="btn btn-primary" value="Salvar">-->
+                        <a id="btnDenunciar" type="submit" class="btn btn-primary">Denunciar</a>
+                        <!--                            <a id="bntCancela" href="administrativo.jsp" class="btn btn-default ">Cancelar</a>-->
+                        <a href="" class="btn btn-default" data-dismiss="modal">Cancelar</a>
+                        <!--<a id="btnEntrar" type="submit" class="btn btn-primary">Entrar</a>-->
                     </div>
                 </div>
             </div>
@@ -121,57 +191,41 @@
         </div>
 
         <div class="container">
-            <div class="container-fluid btn-group " role="group">
-                <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
-                    <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
-                </button>
-                <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
-                </button>
-                <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
-                </button>
-                <!--                <button type="button" onclick="toggleHeatmap()" class="btn btn-default" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> On/Off Heatmap
-                                </button>-->
-                <button type="button" onclick="heat()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-apple" aria-hidden="true"></span> Heat
-                </button>
-                
-                <a href="heatmap.jsp" class="btn btn-default" data-dismiss="modal">Cancelar</a>
-            </div>            
-        </div>
-        <br><br><br>
-        <div class="container col-md-6 col-md-push-3">
-            <form action="DenunciaAddController" id="formDenuncia" method="post">
+            <div class="col-md-8 col-sm-10">
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group" role="group">
+                        <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
+                            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
+                        </button>
+                    </div>
 
-                <div class="form-group">
-                    <label for="Local" class="control-label">Local</label>
-                    <input type="text" id="local" name="local" class="form-control">
-                </div>
-
-                <div class="form-group ">
-                    <label for="isbn" class="control-label">Tipo</label>
-                    <select class="form-control" id="tipo" name="tipo" required> 
-                        <option value="ASSEDIO">Assédio</option> 
-                        <option value="VIOLENCIA">Violência</option> 
-                        <option value="ESTUPRO">Estupro</option> 
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="informacao" class="control-label">Informações adicionais</label>
-                    <textarea id="informacao" name="informacao" class="form-control" rows="5"></textarea>
-                </div>
+                    <div class="btn-group" role="group">
+                        <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
+                        </button>
+                    </div>
 
 
-            </form>
-            <div>
-                <input type="submit" form="formDenuncia" class="btn btn-primary" value="Salvar">
-                <a id="bntCancela" href="administrativo.jsp" class="btn btn-default ">Cancelar</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
+                        </button>
+                    </div>
+
+                    <div class="btn-group" role="group">
+                        <button type="button" onclick="toogleHeatmap()" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Heatmap
+                        </button>
+                    </div>
+                    
+                    <div class="btn-group" role="group">
+                        <button type="button" onclick="teste()" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Teste
+                        </button>
+                    </div>
+
+                </div>            
             </div>
-
-            <br><br><br>
         </div>
 
         <br><br><br>
@@ -188,13 +242,25 @@
 
         <script src="dist/js/login.js"></script>
         <script src="dist/js/checkbuttons.js"></script>
-        <!--        <script type="text/javascript"
-                src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>-->
 
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=visualization,places,geometry&callback=initMap"
         async defer></script>
 
         <script src="dist/js/mapsFunctions.js"></script>
+        
+        <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.min.js"></script>
+        <script type="text/javascript" src="dist/js/date.format.js"></script>
+        <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#datepicker1').datepicker({
+                    pickTime: false,
+                    format: 'dd/mm/yyyy',
+                    language: "pt-BR"
+                });
+            });
+        </script>
+
 
     </body> 
 </html>

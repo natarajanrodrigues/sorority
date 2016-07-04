@@ -5,7 +5,12 @@
  */
 
 $('#check_todos').click(function () {
-    $('.check_marker').not(this).trigger('click');
+//    $('.check_marker').not(this).trigger('click');
+    if ($('#check_todos:checked').length === 1) {
+        $('.check_marker').not($('.check_marker:checked')).trigger('click');
+    } else {
+        $('.check_marker:checked').trigger('click');
+    }
 });
 
 $('.check_marker').change(function () {

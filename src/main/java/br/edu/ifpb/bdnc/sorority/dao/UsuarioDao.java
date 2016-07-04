@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author José
+ * @author Natarajan
  */
 public class UsuarioDao {
 
@@ -32,11 +32,10 @@ public class UsuarioDao {
         try {
             conn = new Conexao();
 
-            stat = conn.getConnection().prepareStatement("INSERT INTO Usuario (email, senha, nome) "
-                    + "VALUES (?,?,?)");
-            stat.setString(2, usuario.getEmail());
-            stat.setString(3, usuario.getSenha());
-            stat.setString(4, usuario.getNome());
+            stat = conn.getConnection().prepareStatement("INSERT INTO Usuario (email, senha, nome) VALUES (?, ?, ?)");
+            stat.setString(1, usuario.getEmail());
+            stat.setString(2, usuario.getSenha());
+            stat.setString(3, usuario.getNome());
             
 
             if (stat.executeUpdate() > 0) {

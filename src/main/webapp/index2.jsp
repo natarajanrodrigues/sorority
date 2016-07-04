@@ -69,15 +69,6 @@
                     <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
 
                     <div class="collpase navbar-collapse" id="example">
-                        <!--                        <form action="" class="navbar-form navbar-left" role="search">
-                                                    <div class="form-group">
-                                                        <input id="pac-input" type="text" class="form-control controls" placeholder="Digite uma localidade aqui">
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Buscar</button>
-                                                </form>-->
-
-                        <!--                        <input id="pac-input" type="text" class="navbar-form controls" placeholder="Digite uma localidade aqui">-->
-
 
                         <div class="groupButtonIndex">
 
@@ -99,23 +90,23 @@
                                             <div class="container row " style="width: 100%">
                                                 <div class="form-group has-feedback">
                                                     <label for="element-7" class="control-label">Email</label>
-                                                    <input type="text" id="email" class="form-control" name="email" 
+                                                    <input type="text" id="emailCadastro" class="form-control" name="email" 
                                                            placeholder="Informe seu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Digite um email válido" required>
                                                     <p class="help-block hidden"></p>
                                                 </div>
 
                                                 <div class="form-group has-feedback">
                                                     <label for="element-8" class="control-label">Senha</label>
-                                                    <input type="password" id="senha" class="form-control" name="senha" placeholder="Escolha sua senha" required>
+                                                    <input type="password" id="senhaCadastro" class="form-control" name="senha" placeholder="Escolha sua senha" required>
                                                     <p class="help-block hidden"></p>
 
                                                 </div>
-                                                <div id="alertaErroLogin" class="alert alert-danger alert-dismissible" role="alert" hidden></div>
+                                                <div id="alertaErroCadastro" class="alert alert-danger alert-dismissible" role="alert" hidden></div>
 
 
                                                 <!--<button type="submit" class="btn btn-primary" form="formulario_cadastro">Enviar</button>-->
                                             </div>
-                                            <a id="btnEnviar" form="formulario_cadastro" type="submit" class="btn btn-primary">Enviar</a>    
+                                            <a id="btnCadastrar" form="formulario_cadastro" type="submit" class="btn btn-primary">Cadastrar</a>    
                                         </form>
 
 
@@ -142,33 +133,45 @@
         </div>
 
         <div class="container" >
-            <div class="container-fluid btn-group " style="margin: 10px 0 10px 0" role="group">
-                <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
-                    <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
-                </button>
-                <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
-                </button>
-                <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
-                </button>
+            <div class="container-fluid" style="margin: 0 0 10px 0" role="group">
+                <h4>Marcadores</h4>
+                <div class="checkbox-inline">
+                    <label>
+                        <input type="checkbox" class="check_marker" id="check_assedio" checked> Assédio
+                    </label>
+                </div>
+                <div class="checkbox-inline">
+                    <label>
+                        <input type="checkbox" class="check_marker" id="check_estupro" checked> Estupro
+                    </label>
+                </div>
+                <div class="checkbox-inline">
+                    <label>
+                        <input type="checkbox" class="check_marker" id="check_violencia" checked> Violência
+                    </label>
+                </div>
+                <div class="checkbox-inline">
+                    <label>
+                        <input type="checkbox" id="check_todos" checked> Todos
+                    </label>
+                </div>
             </div>            
         </div>
 
         <div class="container">
+            <div class="">
+                <div class="btn-group btn-group-justified ">
+                    <div class="col-md-4">
+                        <div class="btn-group" role="group ">
+                            <button type="button" onclick="toogleHeatmap()" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Heatmap
+                            </button>
+                        </div>    
+                    </div>
 
 
-            <div class="container-fluid btn-group " role="group">
-                <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
-                    <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
-                </button>
-                <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
-                </button>
-                <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
-                </button>
-            </div>            
+                </div>            
+            </div>
         </div>
 
         <br><br><br>
@@ -217,12 +220,15 @@
         <script src="dist/js/bootstrap.min.js"></script>
 
         <script src="dist/js/login.js"></script>
+        <script src="dist/js/checkbuttons.js"></script>
+        <!--        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>-->
 
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=places,geometry&callback=initMap"
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=visualization,places,geometry&callback=initMap"
         async defer></script>
-        <script src="dist/js/mapsFunctions.js"></script>
 
+        <script src="dist/js/mapsFunctions.js"></script>
+        
 
     </body> 
 </html>

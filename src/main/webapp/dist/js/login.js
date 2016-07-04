@@ -47,3 +47,42 @@ $('#password').keypress(function (e) {
     }
 });
 //FIM FUNCOES LOGIN
+
+
+//FUNÇÕES CADASTRO
+function processaCadastro() {
+    event.preventDefault();
+
+    $('#alertaErroLogin').hide();
+
+    var dados = $("#formulario_cadastro").serialize();
+
+    var data = dados;
+
+    $.post("cadastrar", data, function (responseJson) {
+
+        var resultado = responseJson.passou;
+        $('p').addClass("hidden");
+        $("div").removeClass("has-error");
+
+        if (resultado === "true") {
+            $(location).attr('href', 'home');
+        } else {
+            $.each(responseJson, function (key, value) {
+                if (key === "emailJaExiste") {
+                    $('#alertaErroCadastro').show(250).text(value);
+                    $("#emailCadastro").parent("div").addClass("has-error");
+                } else {
+                    $("#" + key).next("p").html(value).removeClass("hidden");
+                }
+
+                $("#" + key).parent("div").addClass("has-error");
+
+            });
+        }
+    });
+
+}
+
+$('#btnCadastrar').click(processaCadastro);
+
