@@ -9,12 +9,12 @@ package br.edu.ifpb.bdnc.sorority.entidade;
  *
  * @author Natarajan
  */
-public enum TipoDenuncia {
-    ASSÉDIO(1), VIOLÊNCIA(2), ESTUPRO(3);
+public enum TipoDenunciador {
+    TESTEMUNHA(1), VÍTIMA(2);
     
     public int id;
     
-    private TipoDenuncia(int id){
+    private TipoDenunciador(int id){
         this.id = id;
     }
     

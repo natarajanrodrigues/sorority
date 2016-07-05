@@ -8,12 +8,12 @@ package br.edu.ifpb.bdnc.sorority.dao;
 import br.edu.ifpb.bdnc.sorority.conexao.Conexao;
 import br.edu.ifpb.bdnc.sorority.entidade.Denuncia;
 import br.edu.ifpb.bdnc.sorority.entidade.TipoDenuncia;
-import com.sun.javafx.font.FontConstants;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,17 +36,19 @@ public class DenunciaDao {
             conn = new Conexao();
         }
         Connection c = conn.getConnection();
-        String sql = "INSERT INTO Denuncia (local, tipo, id_usuario, informacao) VALUES (ST_GeomFromText(?, 26910), ?, ?, ?)";
+        String sql = "INSERT INTO Denuncia (local, data_denuncia, tipo, tipo_denunciador, id_usuario, eh_anonima, informacao) VALUES (ST_GeomFromText(?, 26910), ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = null;
 
         try {
             ps = c.prepareStatement(sql);
-            ps.setString(1, "'" + d.getGeometry().toText() + "'");
+//            ps.setString(1, "'" + d.getGeometry().toText() + "'");
             ps.setString(1, d.getGeometry().toText());
-            ps.setString(2, d.getTipo().name());
-//            ps.setInt(3, d.getIdUsuario());
-            ps.setInt(3, 1);
-            ps.setString(4, d.getInformacao());
+            ps.setDate(2, Date.valueOf(d.getData()));
+            ps.setString(3, d.getTipo().name());
+            ps.setString(4, d.getTipoDenunciador().name());
+            ps.setInt(5, d.getIdUsuario());
+            ps.setBoolean(6, d.isDenunciaAnonima());
+            ps.setString(7, d.getInformacao());
 
             return ps.executeUpdate() != 0;
 
@@ -162,7 +164,7 @@ public class DenunciaDao {
                 + "    , ST_AsGeoJSON(lg.local)::json As geometry"
                 + "    , row_to_json(lp) As properties"
                 + "   FROM denuncia As lg "
-                + "         INNER JOIN (SELECT id, tipo, id_usuario, informacao FROM denuncia) As lp "
+                + "         INNER JOIN (SELECT id, tipo, eh_anonima, tipo, tipo_denunciador, data_denuncia, informacao, visible FROM denuncia) As lp "
                 + "       ON lg.id = lp.id  ) As f )  As fc;";
         PreparedStatement ps = null;
 

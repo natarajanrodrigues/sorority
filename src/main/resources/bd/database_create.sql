@@ -13,10 +13,14 @@ CREATE TABLE Usuario(
 CREATE TABLE Denuncia (
     id SERIAL,
 	local GEOMETRY(Point, 26910),
+        data_denuncia DATE,
 	tipo VARCHAR(20) NOT NULL,
-    data_denuncia DATE,
+        tipo_denunciador VARCHAR(20) NOT NULL,
 	id_usuario INT NOT NULL,
+        eh_anonima BOOLEAN DEFAULT 'TRUE',
 	informacao VARCHAR(1000),
+        visible BOOLEAN DEFAULT 'TRUE',
+        
 	FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE RESTRICT,
 	PRIMARY KEY (id)
 );

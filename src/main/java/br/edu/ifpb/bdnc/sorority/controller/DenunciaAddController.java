@@ -7,10 +7,17 @@ package br.edu.ifpb.bdnc.sorority.controller;
 
 import br.edu.ifpb.bdnc.sorority.entidade.Denuncia;
 import br.edu.ifpb.bdnc.sorority.entidade.TipoDenuncia;
+import br.edu.ifpb.bdnc.sorority.entidade.TipoDenunciador;
+import br.edu.ifpb.bdnc.sorority.entidade.Usuario;
 import br.edu.ifpb.bdnc.sorority.model.DenunciaBo;
+import br.edu.ifpb.bdnc.sorority.model.UsuarioBo;
+import com.google.gson.Gson;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -40,12 +47,33 @@ public class DenunciaAddController extends HttpServlet {
             throws ServletException, IOException, ParseException, Exception {
         request.setCharacterEncoding("UTF-8");
         Denuncia d = buildDenuncia(request);
+        
         DenunciaBo bo = new DenunciaBo();
-        if (bo.addDenuncia(d)) {
-            JOptionPane.showMessageDialog(null, "deu certo");
-        } else 
-            JOptionPane.showMessageDialog(null, "nao deu certo");
+        
+        Map<String, String> verificaDenuncia = bo.verificarDenuncia(d);
+        boolean resultadoAddDenuncia = false;
+
+        if (verificaDenuncia.get("passou").equals("true")) {
+
             
+            try {
+                resultadoAddDenuncia = bo.addDenuncia(d);
+            } catch (Exception ex) {
+                Logger.getLogger(CadastrarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println(ex.getMessage());
+            } finally {
+//                if (resultadoAddDenuncia) {
+//                    Integer idCriado = boCadastro.buscarPorEmail(usuario.getEmail()).getId();
+//                    usuario.setId(idCriado);
+//                    sessao.setAttribute("usuario", usuario);
+//                }
+            }
+        }
+
+        String json = new Gson().toJson(verificaDenuncia);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
         
     }
     
@@ -54,11 +82,33 @@ public class DenunciaAddController extends HttpServlet {
         
         WKTReader reader = new WKTReader();
         
+        //pegando os dados
         String coordText = (String) request.getParameter("local");
         String tipo = (String) request.getParameter("tipo");
+        String denunciador = (String) request.getParameter("denunciador");
+        String anonima[];
+        anonima = request.getParameterValues("anonima");
         
+        
+        
+        //setando os dados
         d.setInformacao(request.getParameter("informacao"));
         d.setTipo(TipoDenuncia.valueOf(tipo));
+        d.setTipoDenunciador(TipoDenunciador.valueOf(denunciador));
+        if (anonima.length > 0) {
+            d.setDenunciaAnonima(true);
+        } else {
+            d.setDenunciaAnonima(false);
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String data = request.getParameter("data");
+        if (data != null && data != "") {
+            d.setData(LocalDate.parse(data, dtf));
+        }
+        
+        Usuario user = (Usuario)request.getSession().getAttribute("usuario");
+        d.setIdUsuario(user.getId());
+        
         d.setGeometry(reader.read("POINT("+ coordText +")"));
         
         return d;

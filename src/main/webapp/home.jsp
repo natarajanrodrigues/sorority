@@ -57,6 +57,73 @@
             </div>
         </div>
 
+        <!--Modal Cadastrar Denúncia-->
+        <div class="modal fade" id="modal-denuncia">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title modal-title-center form-singin-heading">Denunciar Ocorrência</h3>
+                    </div>
+                    <div class="modal-body" id="corpoModalLogin">
+                        <form action="DenunciaAddController" id="formDenuncia" method="post">
+
+                            <div class="form-group">
+                                <label for="Local" class="control-label">Local</label>
+                                <input type="text" id="local" name="local" class="form-control">
+                                <!--<input type="hidden" id="local" name="local" class="form-control">-->
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Local" class="control-label">Data</label>
+                                <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="data" name="data" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="isbn" class="control-label">Ocorrência</label>
+                                <select class="form-control" id="tipo" name="tipo" required> 
+                                    <option value="ASSÉDIO">Assédio</option> 
+                                    <option value="VIOLÊNCIA">Violência</option> 
+                                    <option value="ESTUPRO">Estupro</option> 
+                                </select>
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="isbn" class="control-label">Tipo de Denunciador</label>
+                                <select class="form-control" id="denunciador" name="denunciador" required> 
+                                    <option value="TESTEMUNHA">Testemunha</option> 
+                                    <option value="VITIMA">Vítima</option> 
+                                </select>
+                            </div>
+
+                            <div class="form-group ">
+
+                                <label>
+                                    <input type="checkbox" name="anonima" checked> Denúncia anônima
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="informacao" class="control-label">Informações adicionais</label>
+                                <textarea id="informacao" name="informacao" class="form-control" rows="5"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <!--<input type="submit" form="formDenuncia" class="btn btn-primary" value="Salvar">-->
+                        <input id="btnDenunciar" type="submit" class="btn btn-primary" value="Denunciar"/>
+                        <!--                            <a id="bntCancela" href="administrativo.jsp" class="btn btn-default ">Cancelar</a>-->
+                        <a href="" class="btn btn-default" data-dismiss="modal">Cancelar</a>
+                        <!--<a id="btnEntrar" type="submit" class="btn btn-primary">Entrar</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <header>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
@@ -67,63 +134,25 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href=""><img src="imagens/logo_sorority small.WebP" class="navbar-brand" style="padding: 10px"></a>
-
                     </div>
 
                     <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
 
-                    <div class="collpase navbar-collapse" id="example">
-
-                        <div class="groupButtonIndex">
-
-                            <button type="button" class="btn btn-primary navbar-btn navbar-right" data-toggle="modal" data-target="#modal-login">Login</button>
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastre-se</a>
-
-                                    <div class="dropdown-menu" style="padding:10px; min-width:300px;">
-
-                                        <form action="cadastro" id="formulario_cadastro" method="post" class="col-md-12">
-                                            <div class="form-group has-feedback">
-                                                <label for="element-1" class="control-label">Nome Completo</label>
-                                                <input type="text" id="nome" class="form-control" name="nome" placeholder="Digite seu nome" pattern="[A-Za-zÀ-ú0-9 ]+" title="Nome não pode conter caracteres especiais (% - $ _ # @, por exemplo)." required>
-                                                <p class="help-block hidden"></p>
-                                            </div>
-
-                                            <div class="container row " style="width: 100%">
-                                                <div class="form-group has-feedback">
-                                                    <label for="element-7" class="control-label">Email</label>
-                                                    <input type="text" id="emailCadastro" class="form-control" name="email" 
-                                                           placeholder="Informe seu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Digite um email válido" required>
-                                                    <p class="help-block hidden"></p>
-                                                </div>
-
-                                                <div class="form-group has-feedback">
-                                                    <label for="element-8" class="control-label">Senha</label>
-                                                    <input type="password" id="senhaCadastro" class="form-control" name="senha" placeholder="Escolha sua senha" required>
-                                                    <p class="help-block hidden"></p>
-
-                                                </div>
-                                                <div id="alertaErroCadastro" class="alert alert-danger alert-dismissible" role="alert" hidden></div>
-
-
-                                                <!--<button type="submit" class="btn btn-primary" form="formulario_cadastro">Enviar</button>-->
-                                            </div>
-                                            <a id="btnCadastrar" form="formulario_cadastro" type="submit" class="btn btn-primary">Cadastrar</a>    
-                                        </form>
-
-
-
-                                    </div>
-                                </li>
-                            </ul>
-
-
-
-                            <!--<a class="btn navbar-btn navbar-right" data-toggle="modal" data-target="#modal-login">Cadastrar-se</a>-->
-                        </div>
-
+                    <div class="collapse navbar-collapse navbar-right" id="example">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="" class="profile-image img-circle"style="width: 25px; height:25px; object-fit: cover">  ${usuario.nome}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="editarPerfil"><i class="fa fa-user fa-fw"></i> Editar Perfil</a></li>
+<!--                                    <c:if test="${usuario.admin}">
+                                        <li><a href="administrativo.jsp"><i class="fa fa-cog fa-fw"></i> Painel Administrativo</a></li>
+                                    </c:if>-->
+                                    <li class="divider"></li>
+                                    <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
 
                 </div>
@@ -131,12 +160,11 @@
         </header>
         <div class="container">
             <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
-            <div id="map">
+            <div id="map" >
 
-            </div>            
+            </div>
         </div>
-
-        <div class="container" >
+         <div class="container" >
             <div class="container-fluid col-md-4" style="margin: 0 0 10px 0" role="group">
                 <h4>Marcadores</h4>
                 <div class="checkbox-inline">
@@ -161,7 +189,6 @@
                 </div>
                 
                 <input type="checkbox" id="check_heatmap" hidden>
-                
             </div>            
             <div class="container-fluid col-md-8" style="margin: 0 0 10px 0" role="group">
 
@@ -190,15 +217,39 @@
         </div>
 
         <div class="container">
-            <div class="">
-                <div class="btn-group btn-group-justified ">
-                    <div class="col-md-4">
-                        <div class="btn-group" role="group ">
-                            <button type="button" onclick="toogleHeatmap()" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Heatmap
-                            </button>
-                        </div>    
+            <div class="col-md-4 col-sm-2">
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group" role="group">
+                        <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
+                            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
+                        </button>
                     </div>
+
+<!--                    <div class="btn-group" role="group">
+                        <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
+                        </button>
+                    </div>-->
+
+
+<!--                    <div class="btn-group" role="group">
+                        <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
+                        </button>
+                    </div>-->
+
+                    <div class="btn-group" role="group">
+                        <button type="button" onclick="toogleHeatmap()" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Heatmap
+                        </button>
+                    </div>
+
+<!--                    <div class="btn-group" role="group">
+                        <button type="button" onclick="teste()" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Teste
+                        </button>
+                    </div>-->
+
                 </div>            
             </div>
         </div>
@@ -218,27 +269,26 @@
         <script src="dist/js/login.js"></script>
         <script type="text/javascript" src="dist/js/date.format.js"></script>
         <script src="dist/js/checkbuttons.js"></script>
-        <!--        <script type="text/javascript"
-                src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>-->
 
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=visualization,places,geometry&callback=initMap"
         async defer></script>
 
-        <script src="dist/js/mapsFunctions.js"></script>
+        <script src="dist/js/mapsFunctions.js"></script>    
+        
+        
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.min.js"></script>
 
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
+        
         <script>
-                                $(document).ready(function () {
-                                    $('#datepicker1').datepicker({
-                                        pickTime: false,
-                                        format: 'dd/mm/yyyy',
-                                        language: "pt-BR"
-                                    });
-                                });
+            $(document).ready(function () {
+                $('#datepicker1').datepicker({
+                    pickTime: false,
+                    format: 'dd/mm/yyyy',
+                    language: "pt-BR"
+                });
+            });
         </script>
-
-
     </body> 
 </html>
 

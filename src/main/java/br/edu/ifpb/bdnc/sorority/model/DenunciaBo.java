@@ -9,7 +9,9 @@ import br.edu.ifpb.bdnc.sorority.dao.DenunciaDao;
 import br.edu.ifpb.bdnc.sorority.entidade.Denuncia;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,5 +45,46 @@ public class DenunciaBo {
             Logger.getLogger(DenunciaBo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
+    }
+
+    public Map<String, String> verificarDenuncia(Denuncia d) {
+        
+        Map<String, String> resultado = new HashMap<>();
+
+        if (d == null) {
+            return null;
+        }
+
+//        if (usuario.getNome() == null || usuario.getNome().trim().isEmpty()) {
+//            resultado.put("nome", "Informe seu nome.");
+//        } else if (!usuario.getNome().matches("[A-Za-zÀ-ú0-9 ]+")) {
+//            resultado.put("nome", "Nome não pode conter caracteres especiais (% - $ _ # @, por exemplo).");
+//        }
+//
+//
+//        if (    usuario.getEmail() == null ||
+//                usuario.getEmail().trim().isEmpty() ||
+//                !REGEX_EMAIL_VALIDO.matcher(usuario.getEmail()).find())
+//        {
+//            resultado.put("emailCadastro", "Informe um email válido.");
+//        } else {
+//            Usuario usuarioEmail = dao.buscarPorEmail(usuario.getEmail());
+//            if (usuarioEmail != null) {
+//                resultado.put("emailJaExiste", "Já existe um usuário cadastro com este email informado.");
+//            }
+//        }
+//
+//        if (usuario.getSenha() == null || usuario.getSenha().trim().isEmpty()) {
+//            resultado.put("senhaCadastro", "Informe sua senha.");
+//        }
+
+        if (resultado.isEmpty()) {
+            resultado.put("passou", "true");
+        } else {
+            resultado.put("passou", "false");
+        }
+
+        return resultado;
+    
     }
 }

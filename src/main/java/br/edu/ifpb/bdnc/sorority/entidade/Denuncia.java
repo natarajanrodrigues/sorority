@@ -6,6 +6,7 @@
 package br.edu.ifpb.bdnc.sorority.entidade;
 
 import com.vividsolutions.jts.geom.Geometry;
+import java.time.LocalDate;
 
 /**
  *
@@ -15,8 +16,11 @@ public class Denuncia {
     private int id;
     private Geometry geometry; 
     private TipoDenuncia tipo;
+    private TipoDenunciador tipoDenunciador;
     private int idUsuario;
+    private boolean denunciaAnonima;
     private String informacao; 
+    private LocalDate data;
 
     public Denuncia() {
     }
@@ -45,12 +49,28 @@ public class Denuncia {
         this.tipo = tipo;
     }
 
+    public TipoDenunciador getTipoDenunciador() {
+        return tipoDenunciador;
+    }
+
+    public void setTipoDenunciador(TipoDenunciador tipoDenunciador) {
+        this.tipoDenunciador = tipoDenunciador;
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public boolean isDenunciaAnonima() {
+        return denunciaAnonima;
+    }
+
+    public void setDenunciaAnonima(boolean denunciaAnonima) {
+        this.denunciaAnonima = denunciaAnonima;
     }
 
     public String getInformacao() {
@@ -60,8 +80,13 @@ public class Denuncia {
     public void setInformacao(String informacao) {
         this.informacao = informacao;
     }
-    
-    
-    
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
     
 }

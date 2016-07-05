@@ -1,0 +1,19 @@
+{
+    "type":"FeatureCollection",
+    "features":[
+        {
+            "type":"Feature",
+            "geometry":{
+                "type":"Point",
+                "coordinates":[-36.83273681913435, -9.326172173023224]},
+                "properties":{"id":1,"tipo":"ASSEDIO","id_usuario":1,"informacao":"f"}
+        },
+        {
+            "type":"Feature",
+            "geometry":{
+                "type":"Point",
+                "coordinates":[-35.817871168255806, -7.064551246805546]},
+                "properties":{"id":1,"tipo":"ASSEDIO","id_usuario":1,"informacao":"f"}
+        }
+    ]
+}
