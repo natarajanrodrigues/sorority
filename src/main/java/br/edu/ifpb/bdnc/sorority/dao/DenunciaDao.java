@@ -164,7 +164,7 @@ public class DenunciaDao {
                 + "    , ST_AsGeoJSON(lg.local)::json As geometry"
                 + "    , row_to_json(lp) As properties"
                 + "   FROM denuncia As lg "
-                + "         INNER JOIN (SELECT id, tipo, eh_anonima, tipo, tipo_denunciador, data_denuncia, informacao FROM denuncia) As lp "
+                + "         INNER JOIN (SELECT id, tipo, eh_anonima, tipo, tipo_denunciador, data_denuncia, informacao, visible FROM denuncia) As lp "
                 + "       ON lg.id = lp.id  ) As f )  As fc;";
         PreparedStatement ps = null;
 

@@ -19,6 +19,7 @@ CREATE TABLE Denuncia (
 	id_usuario INT NOT NULL,
         eh_anonima BOOLEAN DEFAULT 'TRUE',
 	informacao VARCHAR(1000),
+        visible BOOLEAN DEFAULT 'TRUE',
         
 	FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE RESTRICT,
 	PRIMARY KEY (id)

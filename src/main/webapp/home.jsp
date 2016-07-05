@@ -133,7 +133,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <img src="imagens/logo_sorority small.WebP" class="navbar-brand" style="padding: 10px">
+                        <a href=""><img src="imagens/logo_sorority small.WebP" class="navbar-brand" style="padding: 10px"></a>
                     </div>
 
                     <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
@@ -169,17 +169,17 @@
                 <h4>Marcadores</h4>
                 <div class="checkbox-inline">
                     <label>
-                        <input type="checkbox" class="check_marker" id="check_assedio" checked> Assédio
+                        <input type="checkbox" class="check_marker" id="check_ASSÉDIO" checked> Assédio
                     </label>
                 </div>
                 <div class="checkbox-inline">
                     <label>
-                        <input type="checkbox" class="check_marker" id="check_estupro" checked> Estupro
+                        <input type="checkbox" class="check_marker" id="check_ESTUPRO" checked> Estupro
                     </label>
                 </div>
                 <div class="checkbox-inline">
                     <label>
-                        <input type="checkbox" class="check_marker" id="check_violencia" checked> Violência
+                        <input type="checkbox" class="check_marker" id="check_VIOLÊNCIA" checked> Violência
                     </label>
                 </div>
                 <div class="checkbox-inline">
@@ -187,11 +187,13 @@
                         <input type="checkbox" id="check_todos" checked> Todos
                     </label>
                 </div>
+                
+                <input type="checkbox" id="check_heatmap" hidden>
             </div>            
             <div class="container-fluid col-md-8" style="margin: 0 0 10px 0" role="group">
 
                 <h4>Filtrar por Data</h4>
-                <div class="form-inline col-md-10">
+                <div class="form-inline col-md-8">
                     <label for="Local" class="control-label">Início</label>
                     <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                         <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
@@ -207,12 +209,15 @@
                 <button onclick="buscarPorData()" type="button" class="btn btn-default" aria-label="Buscar por data">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
                 </button>
+                <button type="button" onclick="reset()" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset 
+                </button>
 
             </div>
         </div>
 
         <div class="container">
-            <div class="col-md-8 col-sm-10">
+            <div class="col-md-4 col-sm-2">
                 <div class="btn-group btn-group-justified">
                     <div class="btn-group" role="group">
                         <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
@@ -220,18 +225,18 @@
                         </button>
                     </div>
 
-                    <div class="btn-group" role="group">
+<!--                    <div class="btn-group" role="group">
                         <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
                             <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
                         </button>
-                    </div>
+                    </div>-->
 
 
-                    <div class="btn-group" role="group">
+<!--                    <div class="btn-group" role="group">
                         <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
                             <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
                         </button>
-                    </div>
+                    </div>-->
 
                     <div class="btn-group" role="group">
                         <button type="button" onclick="toogleHeatmap()" class="btn btn-default" aria-label="Left Align">
@@ -239,11 +244,11 @@
                         </button>
                     </div>
 
-                    <div class="btn-group" role="group">
+<!--                    <div class="btn-group" role="group">
                         <button type="button" onclick="teste()" class="btn btn-default" aria-label="Left Align">
                             <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Teste
                         </button>
-                    </div>
+                    </div>-->
 
                 </div>            
             </div>
@@ -276,17 +281,14 @@
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
         
         <script>
-                            $(document).ready(function () {
-                                $('#datepicker1').datepicker({
-                                    pickTime: false,
-                                    format: 'dd/mm/yyyy',
-                                    language: "pt-BR"
-                                });
-                                
-                            });
+            $(document).ready(function () {
+                $('#datepicker1').datepicker({
+                    pickTime: false,
+                    format: 'dd/mm/yyyy',
+                    language: "pt-BR"
+                });
+            });
         </script>
-
-
     </body> 
 </html>
 
