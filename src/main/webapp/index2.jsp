@@ -50,164 +50,191 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="" class="btn btn-default" data-dismiss="modal">Cancelar</a>
-                        <a id="btnEntrar" type="submit" class="btn btn-primary">Entrar</a>
+                        <a href="" class="btn btn-default btn-outline" data-dismiss="modal">Cancelar</a>
+                        <a id="btnEntrar" type="submit" class="btn btn-primary btn-outline">Entrar</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <header>
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href=""><img src="imagens/logo_sorority small.WebP" class="navbar-brand" style="padding: 10px"></a>
+            <nav class="container-fluid navbar navbar-default navbar-fixed-top">
 
-                    </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href=""><img src="imagens/logo_sorority small transp.png" class="navbar-brand mybrand" style="padding: 10px"></a>
+                </div>
 
-                    <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
+                <div class="collapse navbar-collapse" id="example">
 
-                    <div class="collpase navbar-collapse" id="example">
+                    <div class="groupButtonIndex" style="padding-right: 15px">
 
-                        <div class="groupButtonIndex">
 
-                            <button type="button" class="btn btn-primary navbar-btn navbar-right" data-toggle="modal" data-target="#modal-login">Login</button>
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastre-se</a>
+                        <ul class="nav navbar-nav">
+                            <input id="pac-input" type="text" class="navbar-brand navbar-collapse controls navbar-brand2" placeholder="Digite uma localidade aqui">
+                        </ul>
 
-                                    <div class="dropdown-menu" style="padding:10px; min-width:300px;">
+                        <button type="button" class="navbar-btn navbar-right btn btn-primary btn-outline" data-toggle="modal" data-target="#modal-login">Login</button>
 
-                                        <form action="cadastro" id="formulario_cadastro" method="post" class="col-md-12">
+                        <ul class="nav navbar-nav navbar-right">
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastre-se</a>
+
+                                <div class="dropdown-menu" style="padding:10px; min-width:300px;">
+
+                                    <form action="cadastro" id="formulario_cadastro" method="post" class="col-md-12">
+                                        <div class="form-group has-feedback">
+                                            <label for="element-1" class="control-label">Nome Completo</label>
+                                            <input type="text" id="nome" class="form-control" name="nome" placeholder="Digite seu nome" pattern="[A-Za-zÀ-ú0-9 ]+" title="Nome não pode conter caracteres especiais (% - $ _ # @, por exemplo)." required>
+                                            <p class="help-block hidden"></p>
+                                        </div>
+
+                                        <div class="container row " style="width: 100%">
                                             <div class="form-group has-feedback">
-                                                <label for="element-1" class="control-label">Nome Completo</label>
-                                                <input type="text" id="nome" class="form-control" name="nome" placeholder="Digite seu nome" pattern="[A-Za-zÀ-ú0-9 ]+" title="Nome não pode conter caracteres especiais (% - $ _ # @, por exemplo)." required>
+                                                <label for="element-7" class="control-label">Email</label>
+                                                <input type="text" id="emailCadastro" class="form-control" name="email" 
+                                                       placeholder="Informe seu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Digite um email válido" required>
                                                 <p class="help-block hidden"></p>
                                             </div>
 
-                                            <div class="container row " style="width: 100%">
-                                                <div class="form-group has-feedback">
-                                                    <label for="element-7" class="control-label">Email</label>
-                                                    <input type="text" id="emailCadastro" class="form-control" name="email" 
-                                                           placeholder="Informe seu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Digite um email válido" required>
-                                                    <p class="help-block hidden"></p>
-                                                </div>
+                                            <div class="form-group has-feedback">
+                                                <label for="element-8" class="control-label">Senha</label>
+                                                <input type="password" id="senhaCadastro" class="form-control" name="senha" placeholder="Escolha sua senha" required>
+                                                <p class="help-block hidden"></p>
 
-                                                <div class="form-group has-feedback">
-                                                    <label for="element-8" class="control-label">Senha</label>
-                                                    <input type="password" id="senhaCadastro" class="form-control" name="senha" placeholder="Escolha sua senha" required>
-                                                    <p class="help-block hidden"></p>
-
-                                                </div>
-                                                <div id="alertaErroCadastro" class="alert alert-danger alert-dismissible" role="alert" hidden></div>
-
-
-                                                <!--<button type="submit" class="btn btn-primary" form="formulario_cadastro">Enviar</button>-->
                                             </div>
-                                            <a id="btnCadastrar" form="formulario_cadastro" type="submit" class="btn btn-primary">Cadastrar</a>    
-                                        </form>
+                                            <div id="alertaErroCadastro" class="alert alert-danger alert-dismissible" role="alert" hidden></div>
+
+
+                                            <!--<button type="submit" class="btn btn-primary" form="formulario_cadastro">Enviar</button>-->
+                                        </div>
+                                        <a id="btnCadastrar" form="formulario_cadastro" type="submit" class="btn btn-primary btn-outline">Cadastrar</a>    
+                                    </form>
 
 
 
-                                    </div>
-                                </li>
-                            </ul>
+                                </div>
+                            </li>
+                        </ul>
 
 
 
-                            <!--<a class="btn navbar-btn navbar-right" data-toggle="modal" data-target="#modal-login">Cadastrar-se</a>-->
-                        </div>
-
+                        <!--<a class="btn navbar-btn navbar-right" data-toggle="modal" data-target="#modal-login">Cadastrar-se</a>-->
                     </div>
 
                 </div>
+
+
             </nav>
         </header>
-        <div class="container">
-            <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
-            <div id="map">
 
-            </div>            
-        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar affix" style="margin-top: 70px">
+                    <ul id="sidebar" class="nav nav-sidebar" >
+                        <li class="well">
+                            <span>
+                                <h4>Marcadores</h4>
+                                <div class="container-fluid">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_ASSÉDIO" checked> Assédio
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_ESTUPRO" checked> Estupro
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_VIOLÊNCIA" checked> Violência
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="check_todos" checked> Todos
+                                        </label>
+                                    </div>
+                                    <input type="checkbox" id="check_heatmap" hidden>    
+                                </div>
+                            </span>
+                        </li>
+                        <li class="well">
+                            <span>
+                                <h4>Filtrar por Data</h4>
+                                <label for="Local" class="control-label">Início</label>
+                                <div class="input-group date" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                                <label for="Local" class="control-label" style="padding-top: 10px">Fim</label>
+                                <div class="input-group date" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </span>
+                            <span class="container-fluid">
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button onclick="buscarPorData()" type="button" class="btn btn-primary btn-outline btn-sm" aria-label="Buscar por data">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" onclick="reset()" class="btn btn-danger btn-outline btn-sm" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset
+                                        </button>
+                                    </div>
+                                </div>
 
-        <div class="container" >
-            <div class="container-fluid col-md-4" style="margin: 0 0 10px 0" role="group">
-                <h4>Marcadores</h4>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" class="check_marker" id="check_ASSÉDIO" checked> Assédio
-                    </label>
-                </div>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" class="check_marker" id="check_ESTUPRO" checked> Estupro
-                    </label>
-                </div>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" class="check_marker" id="check_VIOLÊNCIA" checked> Violência
-                    </label>
-                </div>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" id="check_todos" checked> Todos
-                    </label>
-                </div>
-                
-                <input type="checkbox" id="check_heatmap" hidden>
-                
-            </div>            
-            <div class="container-fluid col-md-8" style="margin: 0 0 10px 0" role="group">
 
-                <h4>Filtrar por Data</h4>
-                <div class="form-inline col-md-8">
-                    <label for="Local" class="control-label">Início</label>
-                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                        <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-                    <label for="Local" class="control-label">Fim</label>
-                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                        <input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="dd/mm/aaaa">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
+                            </span>
+                            <span class="container-fluid">
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" onclick="toogleHeatmap()" class="btn btn-warning btn-outline" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> On/Off Heatmap
+                                        </button>
+                                    </div>
+                                </div>
+                            </span>
 
+                        </li>
+
+
+                        <li>
+                            <span class="container-fluid">
+
+
+
+
+
+
+                            </span>
+                        </li>
+
+                    </ul>
                 </div>
-                <button onclick="buscarPorData()" type="button" class="btn btn-default" aria-label="Buscar por data">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
-                </button>
-                <button type="button" onclick="reset()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset 
-                </button>
-
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+                    <div id="map"></div>            
+                </div>
             </div>
         </div>
-
-        <div class="container">
-            <div class="">
-                <div class="btn-group btn-group-justified ">
-                    <div class="col-md-4">
-                        <div class="btn-group" role="group ">
-                            <button type="button" onclick="toogleHeatmap()" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Heatmap
-                            </button>
-                        </div>    
-                    </div>
-                </div>            
-            </div>
-        </div>
-
-        <br><br><br>
 
         <!--FOOTER-->
-        <footer>
-
+        <footer class="footer">
+            <div class="container text-center navbar-text">
+                <p class="text-muted credit">Natarajan Rodrigues - IFPB/Cajazeiras</p>
+            </div>
         </footer>
 
         <!-- Latest compiled and minified JavaScript -->
@@ -229,13 +256,13 @@
 
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
         <script>
-                                $(document).ready(function () {
-                                    $('#datepicker1').datepicker({
-                                        pickTime: false,
-                                        format: 'dd/mm/yyyy',
-                                        language: "pt-BR"
-                                    });
-                                });
+                                            $(document).ready(function () {
+                                                $('#datepicker1').datepicker({
+                                                    pickTime: false,
+                                                    format: 'dd/mm/yyyy',
+                                                    language: "pt-BR"
+                                                });
+                                            });
         </script>
 
 

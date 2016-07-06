@@ -13,8 +13,8 @@ var markers = [];
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 6
+        center: {lat: -7.057282352971568, lng: -38.58467135578394},
+        zoom: 5
     });
 
     var infoWindow = new google.maps.InfoWindow({map: map});
@@ -370,7 +370,8 @@ function toogleHeatmap() {
         });
         heatmap.setMap(map);
     } else {
-        heatmap.setMap(null);
+        if (heatmap !== undefined)
+            heatmap.setMap(null);
     }
 
 
@@ -470,13 +471,34 @@ $('#modal-denuncia').on('hidden.bs.modal', function () {
 
 
 function reset() {
+    
+    for (var i = 0; i < markers.length; i++){
+        markers[i].setMap(null);
+    }
+    
+    if ($('#check_todos').prop('checked') === false){
+        $('#check_todos').trigger('click');
+    }
+    
+    $('#dataInicio').val('');
+    $('#dataFim').val('');
+    
+    if ($('#check_heatmap').prop('checked') === true) {
+        $('#check_heatmap').trigger('click');
+    }
+    
+    
     localLayer.setMap(null);
     localLayer.forEach(function (feature) {
         localLayer.remove(feature);
     });
     localLayer.setMap(map);
 //    $('#check_todos').trigger('click');
-    heatmap.setMap(null);
+    if (heatmap !== undefined)
+        heatmap.setMap(null);
+    
+    
+    
     loadLocations();
 }
 

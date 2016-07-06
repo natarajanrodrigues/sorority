@@ -50,8 +50,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="" class="btn btn-default" data-dismiss="modal">Cancelar</a>
-                        <a id="btnEntrar" type="submit" class="btn btn-primary">Entrar</a>
+                        <a href="" class="btn btn-default btn-outline" data-dismiss="modal">Cancelar</a>
+                        <a id="btnEntrar" type="submit" class="btn btn-primary btn-outline">Entrar</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                                 <label for="isbn" class="control-label">Tipo de Denunciador</label>
                                 <select class="form-control" id="denunciador" name="denunciador" required> 
                                     <option value="TESTEMUNHA">Testemunha</option> 
-                                    <option value="VITIMA">Vítima</option> 
+                                    <option value="VÍTIMA">Vítima</option> 
                                 </select>
                             </div>
 
@@ -114,10 +114,10 @@
                     </div>
 
                     <div class="modal-footer">
-                        <!--<input type="submit" form="formDenuncia" class="btn btn-primary" value="Salvar">-->
-                        <input id="btnDenunciar" type="submit" class="btn btn-primary" value="Denunciar"/>
+
+                        <input id="btnDenunciar" type="submit" class="btn btn-primary btn-outline" value="Denunciar"/>
                         <!--                            <a id="bntCancela" href="administrativo.jsp" class="btn btn-default ">Cancelar</a>-->
-                        <a href="" class="btn btn-default" data-dismiss="modal">Cancelar</a>
+                        <a href="" class="btn btn-default btn-outline" data-dismiss="modal">Cancelar</a>
                         <!--<a id="btnEntrar" type="submit" class="btn btn-primary">Entrar</a>-->
                     </div>
                 </div>
@@ -125,140 +125,150 @@
         </div>
 
         <header>
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href=""><img src="imagens/logo_sorority small.WebP" class="navbar-brand" style="padding: 10px"></a>
-                    </div>
+            <nav class="container-fluid navbar navbar-default navbar-fixed-top">
 
-                    <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href=""><img src="imagens/logo_sorority small transp.png" class="navbar-brand" style="padding: 10px"></a>
+                </div>
 
-                    <div class="collapse navbar-collapse navbar-right" id="example">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="" class="profile-image img-circle"style="width: 25px; height:25px; object-fit: cover">  ${usuario.nome}<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="editarPerfil"><i class="fa fa-user fa-fw"></i> Editar Perfil</a></li>
+
+
+
+
+
+                <div class="collapse navbar-collapse navbar-right" id="example">
+                    <ul class="nav navbar-nav">
+                        <input id="pac-input" type="text" class="navbar-brand navbar-collapse controls navbar-brand2" placeholder="Digite uma localidade aqui">
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="profiles/reader-default.png" class="profile-image img-circle"style="width: 25px; height:25px; object-fit: cover">  ${usuario.nome}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="editarPerfil"><i class="fa fa-user fa-fw"></i> Editar Perfil</a></li>
 <!--                                    <c:if test="${usuario.admin}">
-                                        <li><a href="administrativo.jsp"><i class="fa fa-cog fa-fw"></i> Painel Administrativo</a></li>
-                                    </c:if>-->
-                                    <li class="divider"></li>
-                                    <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Sair</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
+                                    <li><a href="administrativo.jsp"><i class="fa fa-cog fa-fw"></i> Painel Administrativo</a></li>
+                                </c:if>-->
+                                <li class="divider"></li>
+                                <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>
-        <div class="container">
-            <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
-            <div id="map" >
 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar affix" style="margin-top: 70px">
+                    <ul id="sidebar" class="nav nav-sidebar" >
+                        <li class="well">
+                            <span>
+                                <h4>Marcadores</h4>
+                                <div class="container-fluid">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_ASSÉDIO" checked> Assédio
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_ESTUPRO" checked> Estupro
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_VIOLÊNCIA" checked> Violência
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="check_todos" checked> Todos
+                                        </label>
+                                    </div>
+                                    <input type="checkbox" id="check_heatmap" hidden>    
+                                </div>
+                            </span>
+                        </li>
+
+                        <li class="well">
+                            <span>
+                                <h4>Filtrar por Data</h4>
+
+                                <label for="Local" class="control-label">Início</label>
+                                <div class="input-group date" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                                <label for="Local" class="control-label" style="padding-top: 10px">Fim</label>
+                                <div class="input-group date" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+
+
+                            </span>
+                            <span class="container-fluid">
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button onclick="buscarPorData()" type="button" class="btn btn-primary btn-outline btn-sm" aria-label="Buscar por data">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" onclick="reset()" class="btn btn-danger btn-outline btn-sm" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </span>
+                            <span>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" onclick="toogleHeatmap()" class="btn btn-warning btn-outline" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> On/Off Heatmap
+                                        </button>
+                                    </div>
+                                </div>
+                            </span>
+
+                            <span class="container-fluid">
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button onclick="enableAddMarker()" type="button" class="btn btn-default btn-outline" aria-label="Enable Marker">
+                                            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </span>
+
+                        </li>
+
+
+
+
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" >
+                    <div id="map" style="height: 523px"></div>            
+                </div>
             </div>
         </div>
-         <div class="container" >
-            <div class="container-fluid col-md-4" style="margin: 0 0 10px 0" role="group">
-                <h4>Marcadores</h4>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" class="check_marker" id="check_ASSÉDIO" checked> Assédio
-                    </label>
-                </div>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" class="check_marker" id="check_ESTUPRO" checked> Estupro
-                    </label>
-                </div>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" class="check_marker" id="check_VIOLÊNCIA" checked> Violência
-                    </label>
-                </div>
-                <div class="checkbox-inline">
-                    <label>
-                        <input type="checkbox" id="check_todos" checked> Todos
-                    </label>
-                </div>
-                
-                <input type="checkbox" id="check_heatmap" hidden>
-            </div>            
-            <div class="container-fluid col-md-8" style="margin: 0 0 10px 0" role="group">
 
-                <h4>Filtrar por Data</h4>
-                <div class="form-inline col-md-8">
-                    <label for="Local" class="control-label">Início</label>
-                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                        <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-                    <label for="Local" class="control-label">Fim</label>
-                    <div class="input-group date col-md-5 col-sm-5" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                        <input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="dd/mm/aaaa">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-
-                </div>
-                <button onclick="buscarPorData()" type="button" class="btn btn-default" aria-label="Buscar por data">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
-                </button>
-                <button type="button" onclick="reset()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset 
-                </button>
-
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="col-md-4 col-sm-2">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group" role="group">
-                        <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
-                            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
-                        </button>
-                    </div>
-
-<!--                    <div class="btn-group" role="group">
-                        <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
-                        </button>
-                    </div>-->
-
-
-<!--                    <div class="btn-group" role="group">
-                        <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
-                        </button>
-                    </div>-->
-
-                    <div class="btn-group" role="group">
-                        <button type="button" onclick="toogleHeatmap()" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Heatmap
-                        </button>
-                    </div>
-
-<!--                    <div class="btn-group" role="group">
-                        <button type="button" onclick="teste()" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Teste
-                        </button>
-                    </div>-->
-
-                </div>            
-            </div>
-        </div>
-
-        <br><br><br>
 
         <!--FOOTER-->
-        <footer>
-
+        <footer class="footer">
+            <div class="container text-center navbar-text">
+                <p class="text-muted credit">Natarajan Rodrigues - IFPB/Cajazeiras</p>
+            </div>
         </footer>
 
         <!-- Latest compiled and minified JavaScript -->
@@ -274,20 +284,20 @@
         async defer></script>
 
         <script src="dist/js/mapsFunctions.js"></script>    
-        
-        
+
+
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.min.js"></script>
 
         <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
-        
+
         <script>
-            $(document).ready(function () {
-                $('#datepicker1').datepicker({
-                    pickTime: false,
-                    format: 'dd/mm/yyyy',
-                    language: "pt-BR"
-                });
-            });
+                                            $(document).ready(function () {
+                                                $('#datepicker1').datepicker({
+                                                    pickTime: false,
+                                                    format: 'dd/mm/yyyy',
+                                                    language: "pt-BR"
+                                                });
+                                            });
         </script>
     </body> 
 </html>
