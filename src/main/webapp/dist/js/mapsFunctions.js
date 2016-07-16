@@ -74,7 +74,6 @@ function initMap() {
         localLayer.forEach(function (feature) {
             if (feature.getProperty('tipo') === 'VIOLÊNCIA') {
                 localLayer.overrideStyle(feature, {'visible': check_value});
-//                feature.setProperty('visible', false);
             }
         });
     });
@@ -153,8 +152,6 @@ function loadLocations() {
         ESTUPRO: {icon: 'icons/letter_e.png'}
     };
 
-//    localLayer.setMap(null);
-    //loading geolocations
 
     if (localLayer === undefined) {
         localLayer = new google.maps.Data();
@@ -172,12 +169,6 @@ function loadLocations() {
     localLayer.loadGeoJson('DenunciaGetAll');
 
     //setting icons markers
-//    localLayer.forEach(function (feature) {
-//        feature.setStyle({'visible': false});
-//    });
-
-//    localLayer.overrideStyle(feature, {'visible': true});
-
     localLayer.setStyle(function (feature) {
         return /** @type {google.maps.Data.StyleOptions} */{
             icon: iconMarker[feature.getProperty('tipo')].icon
@@ -186,19 +177,8 @@ function loadLocations() {
         };
     });
 
-
-
-//    localLayer.overrideStyle(function (feature) {
-//        return /** @type {google.maps.Data.StyleOptions} */{
-//            visible: true
-//        };
-//    });
-
-
     //showing icons on map
     localLayer.setMap(map);
-
-//    infowindow2 = new google.maps.InfoWindow({map: map});
 
     localLayer.addListener('click', function (event) {
         var myHTML = event.feature.getProperty("id");
@@ -211,18 +191,14 @@ function loadLocations() {
         var data = event.feature.getProperty('data_denuncia');
 
 
-
         var dataFeature = new Date(Date.parse(data));
         dataFeature.setDate(dataFeature.getDate() + 1);
 
-
         var dataFormatada = dateFormat(dataFeature, "dd/mm/yyyy");
-
 
         var dados = {"length": 6, "id: ": id, "Tipo de Ocorrência: ": tipo, "Tipo de denunciador: ": tipo_denunciador, "Denúncia Anônima": (true ? 'sim' : 'nao'), "Data: ": data, "Informação: ": informacao};
         var dados2 = {"id: ": id, "Tipo de Ocorrência: ": tipo, "Tipo de denunciador: ": tipo_denunciador, "Denúncia Anônima: ": (true ? 'sim' : 'nao'), "Data: ": dataFormatada, "Informação: ": informacao};
         var dadosArray = $.makeArray(dados);
-
 
 
         var text = "<div style='max-width:300px'>";
@@ -233,13 +209,11 @@ function loadLocations() {
 
         text += "</div>";
 
-//        infowindow2.setContent("<div style='width:150px;'>" + myHTML + "</div>");
         infowindow2.setContent(text);
         // position the infowindow on the marker
         infowindow2.setPosition(event.feature.getGeometry().get());
         // anchor the infowindow on the marker
         infowindow2.setOptions({pixelOffset: new google.maps.Size(0, -30)});
-//        infoWindow.close(map);
         infowindow2.open(map);
     });
 
@@ -259,6 +233,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 //This function enable adding markers to map
 function enableAddMarker() {
+    map.setOptions({ draggableCursor : 'alias' });
+        
     google.maps.event.addListenerOnce(map, 'click', function (event) {
         addMarker(event.latLng);
     });
@@ -270,6 +246,9 @@ function disableAddMarker() {
 
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
+    
+    map.setOptions({ draggableCursor : null });
+    
     var marker = new google.maps.Marker({
         position: location,
         map: map, 
@@ -321,20 +300,7 @@ function closeMarker() {
 }
 
 function removeAllMarkers() {
-//    var i = markers.length;
-//    while (markers.lengh) {
-//        alert(i);
-////        var marker = new google.maps.Marker(markers[i]);
-////        var marker = markers[i];
-////        marker.setMap(null);
-////        markers.pop(markers[i]);
-////        i--;
-//        var oldMarker = markers.pop();
-//        oldMarker.setMap(null);
-//
-//    }
-
-
+    
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
     }
@@ -373,38 +339,7 @@ function toogleHeatmap() {
         if (heatmap !== undefined)
             heatmap.setMap(null);
     }
-
-
-//    $('#check_todos').trigger('click');
-//
-//    //check whether must show heatmap
-//    if ($('#check_todos').prop('checked') === true) {
-//        if (heatmap !== undefined) {
-//            heatmap.setMap(null);
-//        }
-//    } else {
-////        if (heatmap === undefined) {
-//            var places;
-//            heatmapData = [];
-//            
-//            localLayer.forEach(function (feature) {
-//                tmpLatLng = feature.getGeometry().get();                
-//                heatmapData.push(tmpLatLng);
-//            });
-//
-//            heatmap = new google.maps.visualization.HeatmapLayer({
-//                data: heatmapData,
-//                map: map
-//            });
-//            heatmap.setMap(map);
-//
-//
-//
-////        } else {
-////            heatmap.setMap(map);
-////        }
-//
-//    }
+    
 }
 
 
@@ -414,56 +349,26 @@ $('#btnDenunciar').click(processaDenuncia);
 function processaDenuncia() {
     event.preventDefault();
 
-//    $('#alertaErroLogin').hide();
-
     var dados = $("#formDenuncia").serialize();
 
     $.post("DenunciaAddController", dados, function (responseJson) {
 
         var resultado = responseJson.passou;
 
-//        $('p').addClass("hidden");
-//        $("div").removeClass("has-error");
-
         if (resultado === "true") {
+            
             $('#modal-denuncia').modal('hide');
             removeAllMarkers();
             loadLocations();
+            
         } else {
-//            $.each(responseJson, function (key, value) {
-//                if (key === "emailJaExiste") {
-//                    $('#alertaErroCadastro').show(250).text(value);
-//                    $("#emailCadastro").parent("div").addClass("has-error");
-//                } else {
-//                    $("#" + key).next("p").html(value).removeClass("hidden");
-//                }
-//
-//                $("#" + key).parent("div").addClass("has-error");
-//
-//            });
+            
             alert('Ocorreu um erro ao cadastrar Denuncia');
-
         }
     });
 
 }
 
-function teste() {
-
-//    localLayer.overrideStyle('active', true);
-
-    localLayer.forEach(function (feature) {
-        if (feature.getProperty('tipo') === 'VIOLÊNCIA')
-//            console.log('true');
-//        
-//        if (feature.getProperty('active') === undefined)
-//            console.log('und');
-//        feature.setProperty
-            alert(feature.getProperty('visible'));
-
-    });
-
-}
 
 $('#modal-denuncia').on('hidden.bs.modal', function () {
     $(this).find('form')[0].reset();
@@ -493,11 +398,9 @@ function reset() {
         localLayer.remove(feature);
     });
     localLayer.setMap(map);
-//    $('#check_todos').trigger('click');
+    
     if (heatmap !== undefined)
         heatmap.setMap(null);
-    
-    
     
     loadLocations();
 }
@@ -524,9 +427,7 @@ function buscarPorData() {
 
     var dataInicio = $("#dataInicio").datepicker("getDate");
     var dataFim = $("#dataFim").datepicker("getDate");
-//
 
-//    loadLocations();
 
     localLayer.forEach(function (feature) {
 
@@ -542,26 +443,12 @@ function buscarPorData() {
                 localLayer.overrideStyle(feature, {'visible': true});
             }
 
-//        alert('aqui');
-//            localLayer.setStyle(function (feature) {
-//                return /** @type {google.maps.Data.StyleOptions} */{
-//                    icon: iconMarker[feature.getProperty('tipo')].icon,
-//                    visible: true
-//                };
-//            });
-//                        localLayer.overrideStyle(feature, {'visible': true});
         } else {
-//            localLayer.setStyle(function (feature) {
-//                return /** @type {google.maps.Data.StyleOptions} */{
-//                    icon: iconMarker[feature.getProperty('tipo')].icon,
-//                    visible: false
-//                };
-//            });
+
             localLayer.overrideStyle(feature, {'visible': false});
             localLayer.remove(feature);
 
         }
     });
-
 
 }

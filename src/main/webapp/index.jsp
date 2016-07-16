@@ -15,6 +15,9 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="dist/css/bootstrap.min.css">
 
+        <!-- Datepicker -->
+        <link rel="stylesheet" href="dist/css/datepicker/bootstrap-datepicker.min.css">
+
         <!-- Optional theme -->
         <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">        
         <link rel="stylesheet" href="dist/css/sororitypersonalcss.css">
@@ -22,262 +25,229 @@
 
     <body>
 
-        <header>
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <!--<a href="" class="navbar-brand">Sorority</a>-->
-                        <img src="/imagens/logo_sorority small.WebP" class="navbar-brand">
+        <!--Modal Login-->
+        <div class="modal fade" id="modal-login">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title modal-title-center form-singin-heading">Login</h3>
+                    </div>
+                    <div class="modal-body" id="corpoModalLogin">
+                        <form id="formulario" class="form-signin" method="post">
+                            <div class="form-group">
+                                <label for="email" class="control-label">Email</label>
+                                <input type="text" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label">Senha</label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+                            <div id="alertaErroLogin" class="alert alert-danger alert-dismissible" role="alert" hidden>
+                                <strong>Falha no login!</strong> Informações de email e senha incorretas.
+                            </div>
+                        </form>
                     </div>
 
-                    <input id="pac-input" type="text" class="navbar-brand2 navbar-collapse controls" placeholder="Digite uma localidade aqui">
-
-                    <div class="collpase navbar-collapse" id="example">
-                        <!--                        <form action="" class="navbar-form navbar-left" role="search">
-                                                    <div class="form-group">
-                                                        <input id="pac-input" type="text" class="form-control controls" placeholder="Digite uma localidade aqui">
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Buscar</button>
-                                                </form>-->
-
-                        <!--                        <input id="pac-input" type="text" class="navbar-form controls" placeholder="Digite uma localidade aqui">-->
-
-                        <!--<button type="button" class="btn btn-primary navbar-btn navbar-right" data-toggle="modal" data-target="#modal-login">Login</button>-->
-
-                        <a class="btn navbar-btn navbar-right" data-toggle="modal" data-target="#modal-login">Cadastrar-se</a>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-default btn-outline" data-dismiss="modal">Cancelar</a>
+                        <a id="btnEntrar" type="submit" class="btn btn-primary btn-outline">Entrar</a>
                     </div>
-
                 </div>
-            </nav>
-        </header>
-        <div class="container">
-            <br><br><br>
-            <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
-            <div id="map" >
-
             </div>
         </div>
-        <div class="container">
+
+        <header>
+            <nav class="container-fluid navbar navbar-default navbar-fixed-top">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href=""><img src="imagens/logo_sorority small transp.png" class="navbar-brand mybrand" style="padding: 10px"></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="example">
+
+                    <div class="groupButtonIndex" style="padding-right: 15px">
 
 
-            <div class="container-fluid btn-group " role="group">
-                <button onclick="enableAddMarker()" type="button" class="btn btn-default" aria-label="Enable Marker">
-                    <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
-                </button>
-                <button onclick="disableAddMarker()" type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Visualizar
-                </button>
-                <button type="button" onclick="closeMarker()" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover
-                </button>
-            </div>            
 
+                        <ul class="nav navbar-nav">
+                            <input id="pac-input" type="text" class="navbar-brand navbar-collapse controls navbar-brand2" placeholder="Digite uma localidade aqui">
+                        </ul>
+
+                        <button type="button" class="navbar-btn navbar-right btn btn-primary btn-outline" data-toggle="modal" data-target="#modal-login">Login</button>
+
+                        <ul class="nav navbar-nav navbar-right">
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastre-se</a>
+
+                                <div class="dropdown-menu" style="padding:10px; min-width:300px;">
+
+                                    <form action="cadastro" id="formulario_cadastro" method="post" class="col-md-12">
+                                        <div class="form-group has-feedback">
+                                            <label for="element-1" class="control-label">Nome Completo</label>
+                                            <input type="text" id="nome" class="form-control" name="nome" placeholder="Digite seu nome" pattern="[A-Za-zÀ-ú0-9 ]+" title="Nome não pode conter caracteres especiais (% - $ _ # @, por exemplo)." required>
+                                            <p class="help-block hidden"></p>
+                                        </div>
+
+                                        <div class="container row " style="width: 100%">
+                                            <div class="form-group has-feedback">
+                                                <label for="element-7" class="control-label">Email</label>
+                                                <input type="text" id="emailCadastro" class="form-control" name="email" 
+                                                       placeholder="Informe seu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Digite um email válido" required>
+                                                <p class="help-block hidden"></p>
+                                            </div>
+
+                                            <div class="form-group has-feedback">
+                                                <label for="element-8" class="control-label">Senha</label>
+                                                <input type="password" id="senhaCadastro" class="form-control" name="senha" placeholder="Escolha sua senha" required>
+                                                <p class="help-block hidden"></p>
+
+                                            </div>
+                                            <div id="alertaErroCadastro" class="alert alert-danger alert-dismissible" role="alert" hidden></div>
+
+                                        </div>
+                                        <a id="btnCadastrar" form="formulario_cadastro" type="submit" class="btn btn-primary btn-outline">Cadastrar</a>    
+                                    </form>
+
+
+
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+            </nav>
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar affix" style="margin-top: 70px">
+                    <ul id="sidebar" class="nav nav-sidebar" >
+                        <li class="well" style="margin-bottom: 10px;">
+                            <span>
+                                <h4>Marcadores</h4>
+                                <div class="container-fluid">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_ASSÉDIO" checked> Assédio
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_ESTUPRO" checked> Estupro
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="check_marker" id="check_VIOLÊNCIA" checked> Violência
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="check_todos" checked> Todos
+                                        </label>
+                                    </div>
+                                    <input type="checkbox" id="check_heatmap" hidden>    
+                                </div>
+                            </span>
+                        </li>
+                        <li class="well">
+                            <span>
+                                <h4>Filtrar por Data</h4>
+                                <label for="Local" class="control-label">Início</label>
+                                <div class="input-group date" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                                <label for="Local" class="control-label" style="padding-top: 10px">Fim</label>
+                                <div class="input-group date" id="datepicker1" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="dd/mm/aaaa">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </span>
+                            <span class="container-fluid">
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button onclick="buscarPorData()" type="button" class="btn btn-primary btn-outline btn-sm" aria-label="Buscar por data">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" onclick="reset()" class="btn btn-danger btn-outline btn-sm" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </span>
+                            <span class="container-fluid">
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" onclick="toogleHeatmap()" class="btn btn-warning btn-outline" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> On/Off Heatmap
+                                        </button>
+                                    </div>
+                                </div>
+                            </span>
+
+                        </li>
+
+
+                        
+
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+                    <div id="map"></div>            
+                </div>
+            </div>
         </div>
-        <br><br><br>
-        <div class="container col-md-6 col-md-push-3">
-            <form action="/sislivros/logged/livro/cadastrar.do" id="formLivro" method="post" enctype="multipart/form-data">
-
-                <div class="form-group">
-                    <label for="Local" class="control-label">Local</label>
-                    <input type="text" id="local" name="local" class="form-control">
-                </div>
-
-                <div class="form-group ">
-                    <label for="isbn" class="control-label">Tipo</label>
-                    <select class="form-control" id="tipo" name="tipo" required> 
-                        <option value="1">Assédio</option> 
-                        <option value="2">Violência</option> 
-                        <option value="3">Estupro</option> 
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="informacao" class="control-label">Informações adicionais</label>
-                    <textarea id="informacao" name="informacao" class="form-control" rows="5"></textarea>
-                </div>
-            </form>
-        </div>
-
-        <br><br><br>
 
         <!--FOOTER-->
-        <footer>
-
+        <footer class="footer">
+            <div class="container text-center navbar-text">
+                <p class="text-muted credit">Natarajan Rodrigues / Aluisio Pereira / IFPB-Cajazeiras</p>
+            </div>
         </footer>
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="dist/js/jquery-2.1.4.min.js"></script>
+
         <script src="dist/js/bootstrap.min.js"></script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=places,geometry&callback=initMap"
+        <script src="dist/js/login.js"></script>
+        <script type="text/javascript" src="dist/js/date.format.js"></script>
+        <script src="dist/js/checkbuttons.js"></script>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=visualization,places,geometry&callback=initMap"
         async defer></script>
 
+        <script src="dist/js/mapsFunctions.js"></script>
+        <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.min.js"></script>
+
+        <script type="text/javascript" src="dist/js/datepicker/bootstrap-datepicker.pt-BR.min.js"></script>
         <script>
-                    var map;
-
-                    var markers = [];
-
-                    $(document).ready(function () {
-                        
-                    });
-
-
-                    function initMap() {
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            center: {lat: -34.397, lng: 150.644},
-                            zoom: 15
-                        });
-
-                        var infoWindow = new google.maps.InfoWindow({map: map});
-
-                        // Try HTML5 geolocation.
-                        if (navigator.geolocation) {
-                            navigator.geolocation.getCurrentPosition(function (position) {
-                                var pos = {
-                                    lat: position.coords.latitude,
-                                    lng: position.coords.longitude
-                                };
-
-                                infoWindow.setPosition(pos);
-                                infoWindow.setContent('Você está aqui.');
-                                map.setCenter(pos);
-                            }, function () {
-                                handleLocationError(true, infoWindow, map.getCenter());
-                            });
-                        } else {
-                            // Browser doesn't support Geolocation
-                            handleLocationError(false, infoWindow, map.getCenter());
-                        }
-
-                        //RELATIVO AO BUSCADOR
-
-                        // Create the search box and link it to the UI element.
-                        var input = document.getElementById('pac-input');
-                        var searchBox = new google.maps.places.SearchBox(input);
-
-                        // Bias the SearchBox results towards current map's viewport.
-                        map.addListener('bounds_changed', function () {
-                            searchBox.setBounds(map.getBounds());
-                        });
-
-                        // Listen for the event fired when the user selects a prediction and retrieve
-                        // more details for that place.
-                        searchBox.addListener('places_changed', function () {
-                            var places = searchBox.getPlaces();
-
-                            if (places.length === 0) {
-                                return;
-                            }
-
-                            // Clear out the old markers.
-                            markers.forEach(function (marker) {
-                                marker.setMap(null);
-                            });
-                            markers = [];
-
-                            // For each place, get the icon, name and location.
-                            var bounds = new google.maps.LatLngBounds();
-                            places.forEach(function (place) {
-                                var icon = {
-                                    url: place.icon,
-                                    size: new google.maps.Size(71, 71),
-                                    origin: new google.maps.Point(0, 0),
-                                    anchor: new google.maps.Point(17, 34),
-                                    scaledSize: new google.maps.Size(25, 25)
-                                };
-
-                                // Create a marker for each place.
-                                markers.push(new google.maps.Marker({
-                                    map: map,
-                                    icon: icon,
-                                    title: place.name,
-                                    position: place.geometry.location
-                                }));
-
-                                if (place.geometry.viewport) {
-                                    // Only geocodes have viewport.
-                                    bounds.union(place.geometry.viewport);
-                                } else {
-                                    bounds.extend(place.geometry.location);
-                                }
-                            });
-                            map.fitBounds(bounds);
-                        });
-                    }
-
-                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                        infoWindow.setPosition(pos);
-                        infoWindow.setContent(browserHasGeolocation ?
-                                'Error: The Geolocation service failed.' :
-                                'Error: Your browser doesn\'t support geolocation.');
-                    }
-
-                    //This function enable adding markers to map
-                    function enableAddMarker() {
-                        google.maps.event.addListenerOnce(map, 'click', function (event) {
-                            addMarker(event.latLng);
-                        });
-                    }
-
-                    function disableAddMarker() {
-                        //map.clearListeners(map,'click');
-                        addListener.remove();
-                    }
-
-                    // Adds a marker to the map and push to the array.
-                    function addMarker(location) {
-                        var marker = new google.maps.Marker({
-                            position: location,
-                            map: map
-                        });
-
-                        $('#local').val(marker.position.lat());
-
-                        var infowindow = new google.maps.InfoWindow({
-                            content: '<div><button type="button" onclick="closeThisMarker()" class="btn btn-default" aria-label="Left Align">' +
-                                    '<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> Remover ' +
-                                    '</button></div>',
-                            maxWidth: 200
-                        });
-
-                        marker.addListener('click', function () {
-                            infowindow.open(map, marker);
-                            infowindow.marker = marker;
-                            $('#local').val(marker.position.lat());
-                        });
-
-                        markers.push(marker);
-                    }
-
-                    function closeMarker() {
-                        for (var i = 0; i < markers.length; i++) {
-
-                            google.maps.event.clearInstanceListeners(markers[i], 'click');
-
-                            markers[i].addListener('click', function () {
-                                this.setMap(null);
-                                $('#local').val(" ");
-                            });
-                        }
-                    }
-
-                    function closeThisMarker() {
-                        infoWindow.marker.setMap(null);
-                    }
-
+                                            $(document).ready(function () {
+                                                $('#datepicker1').datepicker({
+                                                    pickTime: false,
+                                                    format: 'dd/mm/yyyy',
+                                                    language: "pt-BR"
+                                                });
+                                            });
         </script>
-
-        <!--        
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBab8JBkgtgI3IPJLQiCol30M8nEvE2ER4&libraries=places&signed_in=true&callback=initMap"
-                        async defer>
-                </script>-->
-        <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places&sensor=false"></script>-->
-
 
 
     </body> 

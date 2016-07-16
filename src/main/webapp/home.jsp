@@ -167,7 +167,7 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar affix" style="margin-top: 70px">
                     <ul id="sidebar" class="nav nav-sidebar" >
-                        <li class="well">
+                        <li class="well" style="margin-bottom: 10px;">
                             <span>
                                 <h4>Marcadores</h4>
                                 <div class="container-fluid">
@@ -197,7 +197,7 @@
                         </li>
 
                         <li class="well">
-                            <span>
+                            <span sytle="margim-bottom: -5px">
                                 <h4>Filtrar por Data</h4>
 
                                 <label for="Local" class="control-label">Início</label>
@@ -242,7 +242,7 @@
                             <span class="container-fluid">
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
-                                        <button onclick="enableAddMarker()" type="button" class="btn btn-default btn-outline" aria-label="Enable Marker">
+                                        <button id="addButtom" data-toggle="tooltip" data-placement="top" data-original-title="Clique aqui e indique no mapa o local para iniciar uma denúncia" onclick="enableAddMarker()" type="button" class="btn btn-default btn-outline" aria-label="Enable Marker">
                                             <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Adicionar
                                         </button>
 
@@ -258,16 +258,18 @@
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" >
-                    <div id="map" style="height: 523px"></div>            
+                    <div id="map" ></div>            
                 </div>
             </div>
+            
         </div>
 
 
         <!--FOOTER-->
         <footer class="footer">
             <div class="container text-center navbar-text">
-                <p class="text-muted credit">Natarajan Rodrigues - IFPB/Cajazeiras</p>
+                <p class="text-muted credit">Natarajan Rodrigues / Aluisio Pereira / IFPB-Cajazeiras</p>
+                <!--<p class="text-muted credit"></p>-->
             </div>
         </footer>
 
@@ -292,6 +294,9 @@
 
         <script>
                                             $(document).ready(function () {
+                                                
+                                                $('#addButtom').tooltip();
+                                                
                                                 $('#datepicker1').datepicker({
                                                     pickTime: false,
                                                     format: 'dd/mm/yyyy',
