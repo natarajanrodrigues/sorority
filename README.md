@@ -3,8 +3,7 @@
 - - -
 
 ### Projeto 1 - BDNC - ADS - 2016.1- IFPB Cajazeiras
-
-** PROFESSOR: PAULO FREITAS **
+<strong>Professor: Paulo Freitas</strong> 
 
 
 Um assunto que ultimamente vem tendo destaque seja na grande mídia e redes sociais é a violência contra a mulher. Segundo dados do disque denúncia1, os casos aumentaram 44,74% em 2015 correspondendo a 76651 denúncias. Esse número poderia ser ainda maior, tendo em vista que muitos casos deixam de ser denunciados por inúmeros fatores.
