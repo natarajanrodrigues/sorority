@@ -95,7 +95,7 @@ public class DenunciaAddController extends HttpServlet {
         d.setInformacao(request.getParameter("informacao"));
         d.setTipo(TipoDenuncia.valueOf(tipo));
         d.setTipoDenunciador(TipoDenunciador.valueOf(denunciador));
-        if (anonima.length > 0) {
+        if (anonima != null) {
             d.setDenunciaAnonima(true);
         } else {
             d.setDenunciaAnonima(false);
